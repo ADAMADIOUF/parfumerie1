@@ -1,12 +1,11 @@
 import Button from 'react-bootstrap/Button'
 import logo from '../assets/logozana.png'
 import Container from 'react-bootstrap/Container'
-import Form from 'react-bootstrap/Form'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import NavDropdown from 'react-bootstrap/NavDropdown'
-import Search from './Search'
-
+import { social } from '../social'
+import { Link } from 'react-router-dom'
 function NavScrollExample() {
   return (
     <Navbar
@@ -28,10 +27,20 @@ function NavScrollExample() {
             <Nav.Link href='/about'>á propos</Nav.Link>
           </Nav>
 
-          <Form className='d-flex'>
-            <Search/>
-            
-          </Form>
+          <Nav>
+            <ul className='social-links'>
+              {social.map((link) => {
+                const { url, icon, id } = link
+                return (
+                  <li key={id}>
+                    <Link to={url} className='social-link'>
+                      {icon}
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </Nav>
         </Navbar.Collapse>
       </Container>
     </Navbar>

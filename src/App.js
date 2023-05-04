@@ -11,7 +11,10 @@ import About from './components/About'
 const App = () => {
   return (
     <BrowserRouter>
-      <TopNav/>
+      <TopNav text='Bienvenue chez Zana Parfumerie,
+    faite vos commande sur whatsapp,
+    Au +221 77 555 26 46,
+  ' speed={2} />
       <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />

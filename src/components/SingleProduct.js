@@ -1,29 +1,42 @@
-import React, { useEffect } from 'react'
+import WhatsAppWidget from './whatssap'
+import 'react-whatsapp-widget/dist/index.css'
+import React, { useEffect, useState } from 'react'
 import { useProductsContext } from '../context/products_context'
 import { single_product_url as url } from '../utils/constants'
 import { Link, useParams } from 'react-router-dom'
 import Loader from './Loader'
 import Message from './Message'
 import ProductImages from './ProductImages'
-import { Button, Col, Container, Row } from 'react-bootstrap'
-import Contact from './Contact'
+import { Button, Col, Container, ListGroupItem, Row } from 'react-bootstrap'
+
 const SingleProduct = () => {
- const {
-   single_product_loading: loading,
-   single_product_error: error,
-   single_product:product,fetchSingleProduct,
- } = useProductsContext()
- const {id}= useParams()
- useEffect(()=>{
-  fetchSingleProduct(`${url}${id}`)
- },[id])
- if(loading){
-  return<Loader/>
- }
- if(error){
-  return<Message/>
- }
- const{name,description,image}=product
+ const [showWhatsAppWidget, setShowWhatsAppWidget] = useState(false)
+ const [qty, setQty] = useState(1)
+  const {
+    single_product_loading: loading,
+    single_product_error: error,
+    single_product: product,
+    fetchSingleProduct,
+  } = useProductsContext()
+  const { id } = useParams()
+  useEffect(() => {
+    fetchSingleProduct(`${url}${id}`)
+  }, [id])
+  if (loading) {
+    return <Loader />
+  }
+  if (error) {
+    return <Message />
+  }
+  const { name, description, image } = product
+  
+  const handleAddToCart = () => {
+    const message = `je veux acheter ${product.name} x${qty}`
+    const url = `https://wa.me/+221777618072?text=${encodeURIComponent(
+      message
+    )}`
+    window.open(url, '_blank')
+  }
   return (
     <Container fluid>
       <Link to={`/boutique`}>
@@ -38,8 +51,17 @@ const SingleProduct = () => {
         <Col md={6}>
           <h2>{name}</h2>
           <p className='text-muted'>{description}</p>
-          <Contact className='col-md-6' />
         </Col>
+        <ListGroupItem>
+          <Button onClick={handleAddToCart}>ajouter au panier</Button>
+          {showWhatsAppWidget && (
+            <WhatsAppWidget
+              phoneNumber='+221775552646'
+              message={`
+je veux acheter ${product.name}`}
+            />
+          )}
+        </ListGroupItem>
       </Row>
     </Container>
   )

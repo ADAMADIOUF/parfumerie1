@@ -654,49 +654,12 @@ p {
 }
 
 /* TopNav */
-.top-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
-  background-color: #fff;
-  border-bottom: 1px solid #eee;
-}
-
-.slider__wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
+div {
+  white-space: nowrap;
   overflow: hidden;
-  white-space: nowrap;
-  transition: transform 1s ease-in-out;
 }
 
-.slider__wrapper--left {
-  transform: translateX(0%);
-}
 
-.slider__wrapper--right {
-  transform: translateX(-100%);
-}
-
-.slider__slides {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.slider__slide {
-  display: inline-block;
-  margin-right: 20px;
-}
-
-.slider__text {
-  font-size: 24px;
-  font-weight: 500;
-  color: #333;
-  text-transform: uppercase;
-}
 /* Footer */
 .footer-link {
   list-style-type: none;

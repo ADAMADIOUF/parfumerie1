@@ -22,6 +22,7 @@ const Hero = () => {
                 )
               })}
             </ul>
+            
             <img src={h} alt='' className='hero-image' />
           </div>
 
