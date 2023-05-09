@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-
+import { useState,useEffect } from "react"
 const ScrollingText = ({ text, speed }) => {
   const [position, setPosition] = useState(0)
 
@@ -14,10 +13,21 @@ const ScrollingText = ({ text, speed }) => {
   const style = {
     position: 'relative',
     left: `${position}px`,
-    fontSize: '24px', // Add font size here
+    fontSize: '24px',
+    maxWidth: '100%', // Add max-width here
+    whiteSpace: 'nowrap', // Add white-space here
+    overflow: 'hidden', // Add overflow here
+    textOverflow: 'ellipsis', // Add text-overflow here
+    padding: '10px', // Add padding here
   }
 
-  return <div style={style}>{text}</div>
+  // Add media query for screens with a maximum width of 992px
+  if (window.innerWidth <= 992) {
+    style.fontSize = '20px'
+    style.padding = '5px'
+  }
+
+  return <aside style={style} className="top-nav">{text}</aside>
 }
 
 export default ScrollingText

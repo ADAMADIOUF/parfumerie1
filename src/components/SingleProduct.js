@@ -32,7 +32,7 @@ const SingleProduct = () => {
   
   const handleAddToCart = () => {
     const message = `je veux acheter ${product.name} x${qty}`
-    const url = `https://wa.me/+221777618072?text=${encodeURIComponent(
+    const url = `https://wa.me/+221775552646?text=${encodeURIComponent(
       message
     )}`
     window.open(url, '_blank')
@@ -53,7 +53,7 @@ const SingleProduct = () => {
           <p className='text-muted'>{description}</p>
         </Col>
         <ListGroupItem>
-          <Button onClick={handleAddToCart}>ajouter au panier</Button>
+          <Button onClick={handleAddToCart}>acheter par whatsapp</Button>
           {showWhatsAppWidget && (
             <WhatsAppWidget
               phoneNumber='+221775552646'
